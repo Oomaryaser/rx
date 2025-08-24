@@ -8,18 +8,18 @@ export default async function AppointmentsPage() {
  return (
   <div className="space-y-6">
    <div className="flex items-center justify-between">
-    <h1 className="text-2xl font-bold">ديعاوملا</h1>
+    <h1 className="text-2xl font-bold">المواعيد</h1>
     <NewAppointment />
    </div>
    <div className="bg-white rounded-2xl p-4 shadow border overflow-x-auto">
     <table className="w-full text-sm">
      <thead className="text-left text-slate-500">
       <tr>
-       <th className="p-2">خيراتلا</th>
-       <th className="p-2">تقولا</th>
-       <th className="p-2">ضيرملا</th>
-       <th className="p-2">بيبطلا</th>
-       <th className="p-2">ةلاحلا</th>
+       <th className="p-2">التاريخ</th>
+       <th className="p-2">الوقت</th>
+       <th className="p-2">المريض</th>
+       <th className="p-2">الطبيب</th>
+       <th className="p-2">الحالة</th>
       </tr>
      </thead>
      <tbody>

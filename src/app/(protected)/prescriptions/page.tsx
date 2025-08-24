@@ -8,18 +8,18 @@ export default async function PrescriptionsPage() {
  ]);
  return (
   <div className="space-y-6">
-   <h1 className="text-2xl font-bold">تافصولا ةيبطلا</h1>
+   <h1 className="text-2xl font-bold">الوصفات الطبية</h1>
    <PrescriptionForm patients={patients} doctors={doctors} />
    <div className="bg-white rounded-2xl p-4 shadow border overflow-x-auto">
     <table className="w-full text-sm">
      <thead className="text-left text-slate-500">
       <tr>
        <th className="p-2">#</th>
-       <th className="p-2">ضيرملا</th>
-       <th className="p-2">بيبطلا</th>
-       <th className="p-2">صيخشتلا</th>
-       <th className="p-2">خيرات ءاشنإلا</th>
-       <th className="p-2">ةعابط</th>
+       <th className="p-2">المريض</th>
+       <th className="p-2">الطبيب</th>
+       <th className="p-2">التشخيص</th>
+       <th className="p-2">تاريخ الإنشاء</th>
+       <th className="p-2">طباعة</th>
       </tr>
      </thead>
      <tbody>
@@ -31,7 +31,7 @@ export default async function PrescriptionsPage() {
         <td className="p-2">{r.diagnosis}</td>
         <td className="p-2">{new Date(r.createdAt).toLocaleString()}</td>
         <td className="p-2">
-         <a href={`/prescriptions/${r.id}/print`} className="text-indigo-600 hover:underline">ةعابط</a>
+         <a href={`/prescriptions/${r.id}/print`} className="text-indigo-600 hover:underline">طباعة</a>
         </td>
        </tr>
       ))}

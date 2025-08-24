@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
    reason,
    patientId,
    doctorId,
-   createdById: doctorId, // ا ًقحال ةسلجلا نم بلجا وأ
+   createdById: doctorId, // أو اجلب من الجلسة لاحقًا
   },
  });
  return NextResponse.json(created);
