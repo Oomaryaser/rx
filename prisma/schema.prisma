@@ -1,0 +1,78 @@
+generator client {
+ provider = "prisma-client-js"
+}
+datasource db {
+ provider = "sqlite"
+ url = env("DATABASE_URL")
+}
+enum Role {
+ DOCTOR
+ SECRETARY
+}
+enum AppointmentStatus {
+ BOOKED
+ COMPLETED
+ CANCELLED
+}
+model User {
+ id Int @id @default(autoincrement())
+ name String
+ email String @unique
+ passwordHash String
+ role Role @default(SECRETARY)
+ createdAt DateTime @default(now())
+ appointments Appointment[] @relation("DoctorAppointments")
+ createdAppointments Appointment[] @relation("CreatedByAppointments")
+ prescriptions Prescription[]
+}
+model Patient {
+ id Int @id @default(autoincrement())
+ name String
+ phone String?
+ gender String?
+ dob DateTime?
+ allergies String?
+ notes String?
+ createdAt DateTime @default(now())
+ appointments Appointment[]
+ prescriptions Prescription[]
+}
+model Appointment {
+ id Int @id @default(autoincrement())
+ date DateTime
+ timeFrom String
+ timeTo String
+ reason String?
+ status AppointmentStatus @default(BOOKED)
+ patient Patient @relation(fields: [patientId], references: [id])
+ patientId Int
+ doctor User @relation("DoctorAppointments", fields: [doctorId],
+references: [id])
+ doctorId Int
+ createdBy User @relation("CreatedByAppointments", fields: [createdById],
+references: [id])
+ createdById Int
+ createdAt DateTime @default(now())
+}
+model Prescription {
+ id Int @id @default(autoincrement())
+ diagnosis String
+ notes String?
+ patient Patient @relation(fields: [patientId], references: [id])
+ patientId Int
+ doctor User @relation(fields: [doctorId], references: [id])
+ doctorId Int
+ createdAt DateTime @default(now())
+ medications Medication[]
+}
+model Medication {
+ id Int @id @default(autoincrement())
+ name String
+ dosage String
+ frequency String
+ duration String
+ instructions String?
+ prescription Prescription @relation(fields: [prescriptionId], references:
+[id])
+ prescriptionId Int
+}
