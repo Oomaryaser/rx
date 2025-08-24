@@ -14,17 +14,19 @@ async function createUser() {
     const hashedPassword = await bcrypt.hash(password, 10);
     
     // إنشاء المستخدم
-    const user = await prisma.user.create({
-      data: {
-        name: 'Admin User',
-        email: 'admin@test.com',
-        passwordHash: hashedPassword,
-        role: 'ADMIN'
-      }
-    });
+      const user = await prisma.user.create({
+        data: {
+          name: 'Admin User',
+          email: 'admin@test.com',
+          phone: '+9647700000002',
+          passwordHash: hashedPassword,
+          role: 'ADMIN'
+        }
+      });
     
     console.log('✅ تم إنشاء المستخدم بنجاح:');
     console.log('الإيميل:', user.email);
+    console.log('الهاتف:', user.phone);
     console.log('كلمة المرور:', password);
     console.log('الدور:', user.role);
     

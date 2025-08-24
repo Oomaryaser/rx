@@ -6,15 +6,16 @@ datasource db {
  url      = env("DATABASE_URL")
 }
 model User {
- id           Int      @id @default(autoincrement())
- name         String
- email        String   @unique
- passwordHash String
- role         String   @default("SECRETARY")
- createdAt    DateTime @default(now())
- appointments Appointment[] @relation("DoctorAppointments")
- createdAppointments Appointment[] @relation("CreatedByAppointments")
- prescriptions Prescription[]
+  id           Int      @id @default(autoincrement())
+  name         String
+  email        String   @unique
+  phone        String?  @unique
+  passwordHash String
+  role         String   @default("SECRETARY")
+  createdAt    DateTime @default(now())
+  appointments Appointment[] @relation("DoctorAppointments")
+  createdAppointments Appointment[] @relation("CreatedByAppointments")
+  prescriptions Prescription[]
 }
 model Patient {
  id        Int      @id @default(autoincrement())
