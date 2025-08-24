@@ -1,8 +1,8 @@
-import { getServerSession } from "next-auth";
-import { authConfig } from "@/lib/auth";
+import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+
 export default async function DashboardPage() {
- const session = await getServerSession(authConfig);
+ await auth();
  const [patients, todayAppts, prescriptions] = await Promise.all([
   prisma.patient.count(),
   prisma.appointment.count({
