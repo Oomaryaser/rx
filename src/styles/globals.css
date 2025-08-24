@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root { font-family: system-ui, "Noto Sans Arabic", sans-serif; }
+@media print {
+ .print\:shadow-none { box-shadow: none !important; }
+}
