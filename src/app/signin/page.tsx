@@ -1,6 +1,6 @@
 "use client";
 import { signIn } from "next-auth/react";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import Link from "next/link";
 
 type Role = "doctor" | "secretary";
@@ -11,6 +11,8 @@ export default function SignInPage() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [lang, setLang] = useState<"ar" | "en">("ar");
+  const [mounted, setMounted] = useState(false);
+  const [now, setNow] = useState("");
 
   const t = {
     ar: {
@@ -31,6 +33,15 @@ export default function SignInPage() {
     },
   } as const;
   const text = t[lang];
+
+  useEffect(() => {
+    setNow(
+      new Date().toLocaleString(lang === "ar" ? "ar-IQ" : "en-US", {
+        timeZone: "Asia/Baghdad",
+      })
+    );
+    setMounted(true);
+  }, [lang]);
 
   async function handleLogin(role: Role, e: FormEvent) {
     e.preventDefault();
@@ -53,7 +64,7 @@ export default function SignInPage() {
         <div className="flex items-center justify-between mb-4">
           <div className="font-bold text-lg">RX</div>
           <div className="text-xs text-slate-500">
-            {new Date().toLocaleString(lang === "ar" ? "ar-IQ" : "en-US")}
+            {mounted ? now : "..."}
           </div>
         </div>
         <h1 className="text-2xl font-bold mb-6">{text.title}</h1>
