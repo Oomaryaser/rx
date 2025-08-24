@@ -9,16 +9,16 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   providers: [
     Credentials({
       credentials: {
-        email: { label: "Email", type: "email" },
+        phone: { label: "Phone", type: "text" },
         password: { label: "Password", type: "password" },
       },
       authorize: async (creds) => {
-        const email = String(creds?.email || "").toLowerCase();
-        const user = await prisma.user.findUnique({ where: { email } });
+        const phone = String(creds?.phone || "");
+        const user = await prisma.user.findUnique({ where: { phone } });
         if (!user) return null;
         const ok = await bcrypt.compare(String(creds?.password || ""), user.passwordHash);
         if (!ok) return null;
-        return { id: String(user.id), name: user.name, email: user.email, role: user.role } as any;
+        return { id: String(user.id), name: user.name, phone: user.phone, role: user.role } as any;
       },
     }),
   ],

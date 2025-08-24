@@ -10,6 +10,7 @@ async function main() {
    create: {
     name: "Dr. Ahmed",
     email: "dr@clinic.com",
+    phone: "+9647700000000",
     passwordHash: password,
     role: "DOCTOR",
    },
@@ -20,6 +21,7 @@ async function main() {
    create: {
     name: "Secretary Sara",
     email: "sec@clinic.com",
+    phone: "+9647700000001",
     passwordHash: password,
     role: "SECRETARY",
    },
