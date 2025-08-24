@@ -12,11 +12,11 @@ export default async function DashboardPage() {
  ]);
  return (
   <div className="space-y-6">
-   <h1 className="text-2xl font-bold">ةحول مكحتلا</h1>
+   <h1 className="text-2xl font-bold">لوحة التحكم</h1>
    <div className="grid md:grid-cols-3 gap-4">
-    <Card title="ىضرملا ددع" value={patients} />
-    <Card title="مويلا ديعاوم" value={todayAppts} />
-    <Card title="تافصولا" value={prescriptions} />
+    <Card title="عدد المرضى" value={patients} />
+    <Card title="مواعيد اليوم" value={todayAppts} />
+    <Card title="الوصفات" value={prescriptions} />
    </div>
   </div>
  );
